@@ -1,60 +1,214 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>جدول المكملات</title>
-  <style>
-    body { font-family: sans-serif; background: #f4f7fa; padding: 20px; color: #222; }
-    h1 { text-align: center; color: #004080; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-    th, td { padding: 12px; border: 1px solid #ccc; text-align: center; }
-    th { background-color: #e6f2ff; color: #004080; }
-    tr:nth-child(even) { background-color: #f9f9f9; }
-    .note { margin-top: 20px; font-size: 14px; color: #555; text-align: center; }
-    .back-link { display: block; margin-top: 30px; text-align: center; font-weight: bold; color: #006699; text-decoration: none; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تعافي 63 🌿 – بداية من 15 مجم</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+body{font-family:'Cairo',sans-serif;background:#f8f9fa;color:#222;margin:0;line-height:1.6}
+:root{--a:#2ecc71;--w:#f39c12;--d:#e74c3c;--l:#fff;--g:#eee}
+header{background:#fff;padding:16px;box-shadow:0 2px 10px rgba(0,0,0,0.1);position:sticky;top:0;z-index:10}
+h1{font-size:22px;margin:0;background:linear-gradient(90deg,#2ecc71,#3498db);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.wrap{max-width:1100px;margin:auto;padding:12px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:16px}
+.card{grid-column:span 12;background:var(--l);border-radius:16px;padding:18px;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+@media(min-width:900px){.half{grid-column:span 6}.third{grid-column:span 4}}
+.btn{padding:10px 16px;border:none;border-radius:12px;cursor:pointer;margin:4px;font-size:14px}
+.btn.a{background:var(--a);color:#fff}.btn.w{background:var(--w);color:#fff}.btn.d{background:var(--d);color:#fff}
+.pill{padding:6px 14px;border-radius:30px;background:#e8f5e9;font-size:13px;display:inline-flex;align-items:center;gap:6px}
+.bar{height:10px;background:#ddd;border-radius:5px;overflow:hidden}
+.bar span{display:block;height:100%;background:linear-gradient(90deg,#3498db,var(--a));transition:0.5s}
+.table{width:100%;border-collapse:collapse;font-size:14px}
+.table th{background:#f0f8ff;color:#2980b9;padding:12px}
+.table td{padding:10px;text-align:center;border-bottom:1px solid #eee}
+.supp label{display:flex;align-items:center;gap:12px;padding:10px;background:#f8f9fa;border-radius:10px;margin:6px 0}
+.tip{background:#e8f5ff;padding:16px;border-radius:12px;border-right:5px solid #3498db;margin:12px 0;font-size:15px}
+.mood{padding:10px 16px;border-radius:20px;cursor:pointer}
+.mood.active{background:#d5f5e3;border:2px solid var(--a)}
+</style>
 </head>
 <body>
-  <h1>📋 جدول المكملات الداعمة</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>المكمل</th>
-        <th>الشكل</th>
-        <th>الجرعة اليومية</th>
-        <th>التوقيت</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>جابتين 800 مجم</td>
-        <td>كبسولة</td>
-        <td>2 كبسولة</td>
-        <td>1 صباحًا + 1 مساءً</td>
-      </tr>
-      <tr>
-        <td>ماغنسيوم</td>
-        <td>قرص</td>
-        <td>1 قرص</td>
-        <td>مساءً</td>
-      </tr>
-      <tr>
-        <td>B-كمبلكس (Alive)</td>
-        <td>قرص</td>
-        <td>1 قرص</td>
-        <td>صباحًا</td>
-      </tr>
-      <tr>
-        <td>أشواجندا</td>
-        <td>كبسولة</td>
-        <td>1 كبسولة</td>
-        <td>مساءً أو عند اللزوم</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="note">✅ هذه المكملات تمثل الجزء الداعم في خطة التوقف التدريجي الحالية.</div>
-  <a class="back-link" href="index.html">🔙 العودة إلى خطة الجرعات</a>
+
+<header>
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+    <h1>تعافي 63 🌿 – بداية من 15 مجم إيزوبيكلون</h1>
+    <div>
+      <button class="btn" id="openInv">المخزون 📦</button>
+      <button class="btn" id="prevDay">⬅ السابق</button>
+      <button class="btn" id="nextDay">التالي ➡</button>
+      <button class="btn w" id="resetStart">تاريخ البداية 📅</button>
+      <button class="btn a" id="exportPdf">PDF 📄</button>
+      <button class="btn" onclick="document.body.classList.toggle('night')">🌙 ليلي</button>
+    </div>
+  </div>
+  <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+    <span class="pill">بدء: <b id="startDateLabel">اليوم</b></span>
+    <span class="pill">يوم <b id="dayIdxLabel">1</b>/63</span>
+    <span class="pill">أسبوع <b id="weekLabel">1</b></span>
+    <span class="pill" style="background:#d5f5e3">تقدم <b id="progressText">0%</b></span>
+    <div class="bar" style="flex:1;min-width:200px"><span id="progressBar" style="width:0%"></span></div>
+  </div>
+</header>
+
+<div class="wrap">
+<div class="grid">
+
+  <div class="card" id="chartCard"><h3>منحنى الانسحاب 📉</h3><canvas id="chart"></canvas></div>
+
+  <div class="card"><h3>جرعات اليوم 🎯</h3><p id="targetsText" style="font-size:18px"></p></div>
+
+  <div class="card">
+    <h3>سجل جرعاتك ✍️</h3>
+    <table class="table">
+      <tr><td>إيزوبيكلون</td><td id="t_eso">15</td><td><input type="number" step="0.5" data-k="eso"></td></tr>
+      <tr><td>جابابنتين</td><td id="t_gab">2200</td><td><input type="number" step="50" data-k="gab"></td></tr>
+      <tr><td>منشطات</td><td id="t_stim">650</td><td><input type="number" step="25" data-k="stim"></td></tr>
+      <tr><td>كافيين ≤</td><td id="t_caf">350</td><td><input type="number" step="10" data-k="caf"></td></tr>
+    </table>
+    <button class="btn a" id="saveDay">حفظ اليوم ✅</button> <span id="saveMsg"></span>
+    <button class="btn" id="voiceNote">🎤 ملاحظة صوتية</button>
+  </div>
+
+  <div class="card">
+    <h3>💡 نصيحة اليوم لأعراض الانسحاب</h3>
+    <div id="dailyTip" class="tip">جاري التحميل...</div>
+  </div>
+
+  <div class="card half">
+    <h3>المكملات اليومية 💊 (ضع علامة ✓)</h3>
+    <div class="supp">
+      <label><input type="checkbox" id="s1"> مغنيسيوم جلايسينات 400 مجم</label>
+      <label><input type="checkbox" id="s2"> لـ ثيانين 200–400 مجم</label>
+      <label><input type="checkbox" id="s3"> ميلاتونين 0.5–1 مجم (إذا لزم)</label>
+      <label><input type="checkbox" id="s4"> أوميجا-3 عالي EPA</label>
+      <label><input type="checkbox" id="s5"> فيتامين د 5000 وحدة</label>
+      <label><input type="checkbox" id="s6"> فيتامين ب المركب</label>
+      <label><input type="checkbox" id="s7"> أشواجندا أو روديولا</label>
+    </div>
+  </div>
+
+  <div class="card half">
+    <h3>مزاجك اليوم 😊</h3>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <span class="pill mood" onclick="setMood(1)">😔 مكتئب</span>
+      <span class="pill mood" onclick="setMood(2)">😰 متوتر</span>
+      <span class="pill mood active" onclick="setMood(3)">😐 عادي</span>
+      <span class="pill mood" onclick="setMood(4)">🙂 جيد</span>
+      <span class="pill mood" onclick="setMood(5)">😁 ممتاز</span>
+    </div>
+    <textarea id="notes" rows="4" placeholder="ملاحظات اليوم... أي أعراض؟ نومك؟"></textarea>
+  </div>
+
+  <div class="card">
+    <h3>المخزون 📦</h3>
+    <table class="table" id="invTable"><tbody></tbody></table>
+  </div>
+
+</div>
+</div>
+
+<dialog id="invDlg"><form method="dialog">
+  <h3>إعدادات المخزون</h3>
+  <div id="invForm"></div>
+  <div style="margin-top:20px;text-align:left">
+    <button class="btn" value="cancel">إلغاء</button>
+    <button class="btn a" id="saveInv">حفظ</button>
+  </div>
+</form></dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const TOTAL_DAYS = 63;
+const LS_START = "t63_start", LS_DATA = "t63_data", LS_INV = "t63_inv";
+let day = 1, mood = 3;
+
+// خطة 63 يوم تبدأ من 15 مجم إيزوبيكلون
+const targets = {
+  eso:[0,15,15,15,15,15,15,15,14,14,14,14,14,14,14,14,14,14,14,14,12,12,12,12,12,12,12,10,10,10,10,10,10,10,8,8,8,8,8,8,8,6,6,6,6,6,6,6,4,4,4,4,4,4,4,2,2,2,1,1,1,0],
+  gab:[0,2200,2200,2200,2200,2200,2200,2200,2000,2000,2000,2000,2000,2000,2000,2000,2000,2000,2000,2000,1800,1800,1800,1800,1800,1600,1600,1600,1600,1600,1600,1600,1400,1400,1400,1400,1400,1400,1400,1200,1200,1200,1200,1200,1200,1200,1000,1000,1000,1000,1000,1000,1000,800,800,800,800,800,800,800,600,600,600,300,300,300,0],
+  stim:[0,650,650,650,650,650,650,650,600,600,600,600,600,600,600,600,600,600,600,600,550,550,550,550,550,500,500,500,500,500,500,500,400,400,400,400,400,400,400,300,300,300,300,300,300,300,200,200,200,200,200,200,200,100,100,100,100,100,100,100,50,50,50,0,0,0,0],
+  caf:[0,350,350,350,350,350,350,350,300,300,300,300,300,300,300,300,300,300,300,300,250,250,250,250,250,200,200,200,200,200,200,200,150,150,150,150,150,150,150,100,100,100,100,100,100,100,75,75,75,75,75,75,75,50,50,50,50,50,50,50,30,30,30,10,10,10,0]
+};
+
+const tips = [
+  "💧 اشرب 3–4 لتر ماء يوميًا – يخفف كل الأعراض تقريبًا",
+  "🧘‍♂️ مغنيسيوم جلايسينات قبل النوم = أفضل مسكن للعضلات والقلق",
+  "🏃‍♂️ 20 دقيقة مشي أو تمارين خفيفة يوميًا تقلل القلق بنسبة كبيرة",
+  "☕ تجنب الكافيين بعد 2 ظهرًا تمامًا",
+  "🛁 حمام دافئ + ملح إبسوم = علاج منزلي ممتاز للأرق",
+  "🌬 تنفس 4-7-8 (4 ثواني شهيق، 7 حبس، 8 زفير) يوقف نوبات القلق فورًا",
+  "🐟 أوميجا-3 عالي EPA يحسن المزاج خلال أسبوعين",
+  "⏰ نام واصحَ نفس الميعاد حتى لو نمت 4 ساعات فقط"
+];
+
+function getStart(){let s=localStorage.getItem(LS_START);if(!s){let d=new Date();d.setHours(0,0,0,0);localStorage.setItem(LS_START,d.toISOString());s=d.toISOString()}return new Date(s)}
+function getDay(){const s=getStart().getTime(),n=new Date();n.setHours(0,0,0,0);return Math.min(TOTAL_DAYS,Math.max(1,Math.floor((n-s)/86400000)+1))}
+function data(){return JSON.parse(localStorage.getItem(LS_DATA)||"{}")}
+function saveData(o){localStorage.setItem(LS_DATA,JSON.stringify(o))}
+function dayData(d){let a=data();return a[d]||{med:{},sup:{},mood:3,notes:""}}
+function saveDay(d,o){let a=data();a[d]=o;saveData(a)}
+
+new Chart(document.getElementById('chart'),{type:'line',data:{labels:Array.from({length:TOTAL_DAYS},(_,i)=>i+1),datasets:[
+  {label:'إيزوبيكلون',data:targets.eso.slice(1),borderColor:'#e74c3c',tension:.3},
+  {label:'جابابنتين',data:targets.gab.slice(1).map(v=>v/100),borderColor:'#f39c12',tension:.3},
+  {label:'منشطات',data:targets.stim.slice(1),borderColor:'#3498db',tension:.3}
+]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}},maintainAspectRatio:false}});
+
+function render(){
+  day = getDay();
+  document.getElementById("dayIdxLabel").textContent = day;
+  document.getElementById("weekLabel").textContent = Math.ceil(day/7);
+  document.getElementById("progressText").textContent = Math.round(day/TOTAL_DAYS*100)+"%";
+  document.getElementById("progressBar").style.width = (day/TOTAL_DAYS*100)+"%";
+  document.getElementById("startDateLabel").textContent = getStart().toLocaleDateString('ar-EG');
+
+  document.getElementById("t_eso").textContent = targets.eso[day];
+  document.getElementById("t_gab").textContent = targets.gab[day];
+  document.getElementById("t_stim").textContent = targets.stim[day];
+  document.getElementById("t_caf").textContent = targets.caf[day];
+
+  document.getElementById("targetsText").innerHTML = `إيزوبيكلون <b>\( {targets.eso[day]}</b> 🌙 • جابابنتين <b> \){targets.gab[day]}</b> • منشطات <b>\( {targets.stim[day]}</b> ⚡ • كافيين ≤ <b> \){targets.caf[day]}</b> ☕` +
+    (day===63?" <b style='color:#2ecc71'>🎉 خلاص حر!</b>":"");
+
+  document.getElementById("dailyTip").innerHTML = "💡 <b>نصيحة اليوم:</b> " + tips[(day-1)%tips.length];
+
+  const dd = dayData(day);
+  ["eso","gab","stim","caf"].forEach(k=>document.querySelector(`input[data-k=${k}]`).value = dd.med[k]||"");
+  document.getElementById("notes").value = dd.notes||"";
+  setMood(dd.mood||3);
+}
+function setMood(m){mood=m;document.querySelectorAll('.mood').forEach((e,i)=>e.classList.toggle('active',i+1===m))}
+
+document.getElementById("saveDay").onclick=()=>{
+  const o={med:{},sup:{},mood,mood,notes:document.getElementById("notes").value};
+  ["eso","gab","stim","caf"].forEach(k=>o.med[k]=Number(document.querySelector(`input[data-k=${k}]`).value)||null);
+  saveDay(day,o);
+  document.getElementById("saveMsg").textContent="تم الحفظ ✅";
+  setTimeout(()=>document.getElementById("saveMsg").textContent="",2000);
+};
+
+document.getElementById("prevDay").onclick=()=>{renderDay(Math.max(1,day-1))}
+document.getElementById("nextDay").onclick=()=>{renderDay(Math.min(TOTAL_DAYS,day+1))}
+function renderDay(d){day=d;render()}
+
+document.getElementById("resetStart").onclick=()=>{
+  const s=prompt("تاريخ البداية الجديد (YYYY-MM-DD) أو فارغ لليوم:",getStart().toISOString().slice(0,10));
+  if(s===null)return;
+  const d=s?s+"T00:00:00":(new Date().setHours(0,0,0,0),new Date());
+  localStorage.setItem(LS_START,new Date(d).toISOString());
+  render();
+};
+
+document.getElementById("voiceNote").onclick=()=>{
+  if(!('SpeechRecognition' in window||'webkitSpeechRecognition' in window))return alert("الميكروفون غير مدعوم");
+  const r=new (window.SpeechRecognition||window.webkitSpeechRecognition)();
+  r.lang="ar-SA";r.onresult=e=>document.getElementById("notes").value+=e.results[0][0].transcript+" ";
+  r.start();
+};
+
+render();
+setInterval(()=>{if(getDay()!==day)render()},60000);
+</script>
 </body>
 </html>
