@@ -1,280 +1,171 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>تعافي 63 – شغال 100%</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>تعافي 12 أسبوع — تثبيت ثم نقل ثم تخفيض</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
-body{font-family:'Cairo',sans-serif;background:#f8f9fa;color:#222;margin:0;line-height:1.6}
-header{background:#fff;padding:16px;box-shadow:0 2px 10px rgba(0,0,0,.1);position:sticky;top:0;z-index:10}
-h1{font-size:24px;margin:0;background:linear-gradient(90deg,#2ecc71,#3498db);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.wrap{max-width:1200px;margin:auto;padding:15px}
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
-.card{grid-column:span 12;background:#fff;border-radius:16px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,.08)}
-@media(min-width:900px){.half{grid-column:span 6}}
-.btn{padding:11px 18px;border:none;border-radius:12px;cursor:pointer;margin:4px;font-size:15px;font-weight:600}
-.btn.a{background:#2ecc71;color:#fff}
-.btn.w{background:#f39c12;color:#fff}
-.pill{padding:7px 15px;border-radius:30px;background:#e8f5e9;font-size:14px}
-.bar{height:12px;background:#eee;border-radius:6px;overflow:hidden;margin:12px 0}
-.bar span{display:block;height:100%;background:linear-gradient(90deg,#3498db,#2ecc71);transition:.6s}
-.table{width:100%;border-collapse:collapse;margin:20px 0}
-.table th{background:#f0f8ff;padding:14px}
-.table td{padding:12px;text-align:center;border-bottom:1px solid #eee}
-.tip{background:#e8f5ff;padding:18px;border-radius:12px;border-right:6px solid #3498db;margin:15px 0;font-size:16px}
-.mood{padding:14px 22px;border-radius:30px;background:#f0f0f0;cursor:pointer;transition:.3s;font-size:20px}
-.mood.active{background:#d5f5e3;border:3px solid #2ecc71}
-#chart{height:240px !important}
-dialog{background:#fff;padding:30px;border-radius:16px;border:none;box-shadow:0 15px 50px rgba(0,0,0,.4);max-width:90%;width:550px}
-dialog::backdrop{background:#000000cc}
-input[type=number]{padding:10px;border-radius:8px;border:1px solid #ccc;width:100px}
+  :root{
+    --bg:#f5f7fa; --card:#fff; --text:#0f172a; --muted:#64748b; --border:#e2e8f0;
+    --header:#ffffffee; --input:#f8fafc; --btn:#fff; --accent:#16a34a; --accent-bg:#dcfce7;
+    --warn:#92400e; --warn-bg:#fef3c7; --danger:#e11d48; --danger-bg:#ffe4e6; --blue:#2563eb;
+  }
+  body.night{--bg:#0b1220;--card:#10192e;--text:#e9eef7;--muted:#99a3b3;--border:#1f2a44;--header:#0b1220ee;--input:#0c1426;--btn:#0c1426;--accent:#4ade80;--accent-bg:#12311e;--warn:#fff3cd;--warn-bg:#32240d;--danger:#fb7185;--danger-bg:#3a1521;--blue:#60a5fa}
+  *{box-sizing:border-box} body{margin:0;font-family:system-ui,"Segoe UI",Tahoma,Arial;color:var(--text);background:var(--bg)}
+  header{position:sticky;top:0;z-index:10;background:var(--header);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:14px}
+  h1{font-size:18px;margin:0} h3{margin:0 0 10px}.wrap{max-width:1120px;margin:auto;padding:14px}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}.card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:14px}.half{grid-column:span 12}@media(min-width:900px){.half{grid-column:span 6}.third{grid-column:span 4}.two{grid-column:span 2}}
+  .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.btn{border:1px solid var(--border);background:var(--btn);color:var(--text);padding:9px 12px;border-radius:10px;cursor:pointer}.btn.accent{background:var(--accent-bg);color:var(--accent);border-color:var(--accent)}.btn.warn{background:var(--warn-bg);color:var(--warn)}.btn.danger{background:var(--danger-bg);color:var(--danger)}
+  .pill{display:inline-flex;gap:6px;align-items:center;background:var(--input);border:1px solid var(--border);border-radius:999px;padding:6px 10px;font-size:12px}.muted{color:var(--muted)}.ok{color:var(--accent)}.bad{color:var(--danger)}.blue{color:var(--blue)}
+  label{display:block;font-size:12px;color:var(--muted);margin:8px 0 6px} input,textarea,select{width:100%;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--input);color:var(--text)} textarea{min-height:90px}.table{width:100%;border-collapse:collapse;font-size:13px}.table th,.table td{border-bottom:1px solid var(--border);padding:8px;text-align:center}.table td:first-child,.table th:first-child{text-align:right}.phaseBox{border:1px solid var(--border);border-radius:14px;padding:12px;background:var(--input)}.activePhase{outline:2px solid var(--accent);background:var(--accent-bg)}
+  .bar{height:10px;background:var(--input);border:1px solid var(--border);border-radius:999px;overflow:hidden}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--accent));width:0%}.small{font-size:12px}.checkline{display:flex;gap:8px;align-items:center;margin:6px 0}.checkline input{width:auto}
+  @media print{header .row button,.noPrint{display:none!important}.card{break-inside:avoid}.wrap{padding:0}body{background:white}.card{border-color:#ddd}}
 </style>
 </head>
 <body>
-
 <header>
-  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
-    <h1>تعافي 63 🌿 – من 15 مجم إلى الحرية</h1>
-    <div>
-      <button class="btn" id="openInv">المخزون 📦</button>
-      <button class="btn" id="prevDay">⬅ السابق</button>
-      <button class="btn" id="nextDay">التالي ➡</button>
-      <button class="btn w" id="resetStart">تاريخ البداية 📅</button>
-      <button class="btn a" id="saveDay">حفظ اليوم ✅</button>
+  <div class="row" style="justify-content:space-between">
+    <h1>تعافي 12 أسبوع — تثبيت ثم نقل ثم تخفيض</h1>
+    <div class="row noPrint">
+      <button class="btn" id="prevDay">السابق</button><button class="btn" id="nextDay">التالي</button>
+      <button class="btn" id="todayBtn">اليوم</button><button class="btn" id="setStart">يوم البدء</button>
+      <button class="btn" id="darkMode">الوضع الليلي</button><button class="btn" id="exportCsv">CSV</button>
+      <button class="btn" id="printPdf">PDF/طباعة</button><button class="btn danger" id="wipe">مسح</button>
     </div>
   </div>
-  <div style="margin-top:15px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-    <span class="pill">بدء: <b id="startDateLabel"></b></span>
-    <span class="pill">يوم <b id="dayIdxLabel">1</b>/63</span>
-    <span class="pill">أسبوع <b id="weekLabel">1</b></span>
-    <span class="pill" style="background:#d5f5e3">تقدم <b id="progressText">0%</b></span>
-    <div class="bar" style="flex:1"><span id="progressBar" style="width:0%"></span></div>
+  <div class="row" style="margin-top:8px">
+    <span class="pill">بدء: <b id="startLabel"></b></span>
+    <span class="pill">اليوم: <b id="dayLabel"></b> / 84</span>
+    <span class="pill">الأسبوع: <b id="weekLabel"></b></span>
+    <span class="pill ok">المرحلة: <b id="phaseLabel"></b></span>
+    <span class="pill">تقدم زمني: <b id="progressText"></b></span>
   </div>
 </header>
 
-<div class="wrap"><div class="grid">
-
-  <div class="card"><h3>منحنى الانسحاب 📉</h3><canvas id="chart"></canvas></div>
-
-  <div class="card"><h3>جرعات اليوم 🎯</h3><p id="targetsText" style="font-size:20px;font-weight:700"></p></div>
-
-  <div class="card">
-    <h3>تسجيل الجرعات</h3>
-    <table class="table">
-      <tr><th>الدواء</th><th>الهدف</th><th>أُخذ</th></tr>
-      <tr><td>إيزوبيكلون</td><td id="t_eso">15</td><td><input type="number" step="0.5" data-k="eso"></td></tr>
-      <tr><td>جابابنتين</td><td id="t_gab">2200</td><td><input type="number" step="100" data-k="gab"></td></tr>
-      <tr><td>أرمودافينيل</td><td id="t_arm">650</td><td><input type="number" step="50" data-k="arm"></td></tr>
-      <tr><td>كافيين ≤</td><td id="t_caf">350</td><td><input type="number" step="10" data-k="caf"></td></tr>
-    </table>
-  </div>
-
-  <div class="card"><h3>نصيحة اليوم 💡</h3><div id="dailyTip" class="tip"></div></div>
-
-  <div class="card half">
-    <h3>مزاجي</h3>
-    <div style="display:flex;gap:15px;justify-content:center;margin:25px 0">
-      <span class="mood" onclick="setMood(1)">😔</span>
-      <span class="mood" onclick="setMood(2)">😰</span>
-      <span class="mood active" onclick="setMood(3)">😐</span>
-      <span class="mood" onclick="setMood(4)">🙂</span>
-      <span class="mood" onclick="setMood(5)">😁</span>
+<div class="wrap">
+  <div class="grid">
+    <div class="card">
+      <h3>الخطة المختصرة</h3>
+      <div class="grid">
+        <div class="phaseBox third" id="phase1"><b>الأسبوع 1: تثبيت</b><br><span class="small muted">لا زيادة، لا تخفيض. تثبيت الأرقام وتسجيل اليوم.</span></div>
+        <div class="phaseBox third" id="phase2"><b>الأسبوع 2: نقل نايت كالم</b><br><span class="small muted">تقليل وظيفة الجرعة النهارية كمسكن إحباط، ونقلها تدريجيًا ناحية الليل بموافقة الطبيب.</span></div>
+        <div class="phaseBox third" id="phase3"><b>الأسابيع 3–12: تخفيض</b><br><span class="small muted">10 أسابيع تخفيض تدريجي بعد موافقة الطبيب وبحسب الخطة الطبية.</span></div>
+      </div>
     </div>
-    <textarea id="notes" rows="5" placeholder="ملاحظات اليوم…"></textarea>
+
+    <div class="card">
+      <h3>هدف اليوم</h3>
+      <p id="targetText" class="muted"></p>
+      <div class="bar"><span id="progressBar"></span></div>
+    </div>
+
+    <div class="card">
+      <h3>تسجيل الجرعات</h3>
+      <table class="table">
+        <thead><tr><th>البند</th><th>الهدف/الملاحظة</th><th>ما حدث اليوم</th><th>تنبيه</th></tr></thead>
+        <tbody id="doseRows"></tbody>
+      </table>
+      <div class="row" style="margin-top:10px"><button class="btn accent" id="saveDay">حفظ اليوم</button><span class="muted" id="saveMsg"></span></div>
+    </div>
+
+    <div class="card half">
+      <h3>مؤشرات اليوم</h3>
+      <div class="grid">
+        <div class="two"><label>النوم/ساعات</label><input type="number" id="sleep" min="0" max="14" step="0.5"></div>
+        <div class="two"><label>الإحباط من 10</label><input type="number" id="defeat" min="0" max="10"></div>
+        <div class="two"><label>القلق من 10</label><input type="number" id="anxiety" min="0" max="10"></div>
+        <div class="two"><label>العصبية من 10</label><input type="number" id="anger" min="0" max="10"></div>
+        <div class="two"><label>الرغبة في الزيادة</label><input type="number" id="craving" min="0" max="10"></div>
+        <div class="two"><label>الطاقة من 10</label><input type="number" id="energy" min="0" max="10"></div>
+      </div>
+    </div>
+
+    <div class="card half">
+      <h3>بروتوكول الإحباط قبل جرعة نهارية</h3>
+      <div class="checkline"><input type="checkbox" id="p_wait"><span>انتظرت 10 دقائق قبل القرار</span></div>
+      <div class="checkline"><input type="checkbox" id="p_change"><span>غسلت وجهي/غيرت ملابسي/خرجت من مشهد العمل</span></div>
+      <div class="checkline"><input type="checkbox" id="p_write"><span>كتبت سبب الرغبة قبل الجرعة</span></div>
+      <label>سبب الإحباط أو الجرعة النهارية</label>
+      <textarea id="reason" placeholder="مثال: مشكلة في العمل، إحساس بالانهزام، قلق، عادة..."></textarea>
+    </div>
+
+    <div class="card half">
+      <h3>ملاحظات للطبيب</h3>
+      <textarea id="doctorNotes" placeholder="أي أعراض: أرق شديد، خفقان، دوخة، تشنج، ارتباك، انهيار نفسي..."></textarea>
+    </div>
+
+    <div class="card half">
+      <h3>مخزون مبسط</h3>
+      <table class="table"><thead><tr><th>دواء</th><th>mg/قرص</th><th>المتبقي أقراص</th></tr></thead><tbody id="invRows"></tbody></table>
+      <div class="row noPrint" style="margin-top:10px"><button class="btn" id="saveInv">حفظ المخزون</button></div>
+    </div>
   </div>
+</div>
 
-  <div class="card">
-    <h3>المخزون الحالي 📦</h3>
-    <table class="table" id="invTable"><tbody></tbody></table>
-  </div>
-
-</div></div>
-
-<dialog id="invDlg">
-  <h3>تعديل المخزون</h3>
-  <div id="invForm"></div>
-  <div style="margin-top:25px;text-align:left">
-    <button class="btn" style="background:#e74c3c" onclick="document.getElementById('invDlg').close()">إلغاء</button>
-    <button class="btn a" id="saveInv">حفظ ✅</button>
-  </div>
-</dialog>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-const TOTAL_DAYS = 63;
-const LS_START = "t63_start";
-const LS_DATA = "t63_data";
-const LS_INV = "t63_inv";
-let currentDay = 1, currentMood = 3, chart = null;
-
-const targets = {
-  eso: [0,15,15,15,15,15,15,15,14,14,14,14,14,14,14,14,14,14,14,14,12,12,12,12,12,12,12,10,10,10,10,10,10,10,8,8,8,8,8,8,8,6,6,6,6,6,6,6,4,4,4,4,4,4,4,2,2,2,1,1,1,0],
-  gab: [0,2200,2200,2200,2200,2200,2200,2200,2000,2000,2000,2000,2000,2000,2000,2000,2000,2000,2000,2000,1800,1800,1800,1800,1800,1600,1600,1600,1600,1600,1600,1600,1400,1400,1400,1400,1400,1400,1400,1200,1200,1200,1200,1200,1200,1200,1000,1000,1000,1000,1000,1000,1000,800,800,800,800,800,800,800,600,600,600,300,300,300,0],
-  arm: [0,650,650,650,650,650,650,650,600,600,600,600,600,600,600,600,600,600,600,600,550,550,550,550,550,500,500,500,500,500,500,500,400,400,400,400,400,400,400,300,300,300,300,300,300,300,200,200,200,200,200,200,200,100,100,100,100,100,100,100,50,50,50,0,0,0,0],
-  caf: [0,350,350,350,350,350,350,350,300,300,300,300,300,300,300,300,300,300,300,300,250,250,250,250,250,200,200,200,200,200,200,200,150,150,150,150,150,150,150,100,100,100,100,100,100,100,75,75,75,75,75,75,75,50,50,50,50,50,50,50,30,30,30,10,10,10,0]
-};
-
-const drugInfo = {
-  eso: {name:"إيزوبيكلون", mg:3, tabsPerBox:30},
-  gab: {name:"جابابنتين", mg:800, tabsPerBox:30},
-  arm: {name:"أرمودافينيل", mg:150, tabsPerBox:30}
-};
-
-const tips = ["اشرب 4-5 لتر ماء","مغنيسيوم جلايسينات قبل النوم","20-30 دقيقة مشي يوميًا","لا كافيين بعد 2 ظهرًا","حمام دافئ + ملح إبسوم","تنفس 4-7-8","أوميجا-3 عالي EPA","مواعيد نوم ثابتة","ل-ثيانين 200-400 مجم","كويتابكس 25 فقط عند الضرورة القصوى"];
-
-function getStartDate() {
-  let s = localStorage.getItem(LS_START);
-  if (!s) {
-    let d = new Date(); d.setHours(0,0,0,0);
-    localStorage.setItem(LS_START, d.toISOString());
-    s = d.toISOString();
+const LS_START='recovery12_start_v2', LS_DATA='recovery12_data_v2', LS_INV='recovery12_inv_v2', LS_DARK='recovery12_dark_v2';
+const DRUGS=[
+  {key:'armodacure', label:'أرمودكيور', unit:'mg', baseline:'300 مجم: 150 صباحًا + 150 الساعة 2 مساءً'},
+  {key:'night_total_tabs', label:'نايت كالم إجمالي', unit:'قرص', baseline:'ثبيت الرقم اليومي: غالبًا 5 أقراص، ولا زيادة تلقائية'},
+  {key:'night_day_tabs', label:'نايت كالم نهاري', unit:'قرص', baseline:'يسجل فقط. الهدف في أسبوع النقل: تقليل وظيفة قرص الإحباط النهاري'},
+  {key:'gabapentin_tabs', label:'جابتين 800', unit:'قرص', baseline:'تثبيت 3 أقراص إن أمكن وعدم الصعود إلى 4 بلا طبيب'}
+];
+const INV=[{key:'armodacure',label:'أرمودكيور',mg:150},{key:'nightcalm',label:'نايت كالم',mg:3},{key:'gabapentin',label:'جابتين',mg:800}];
+function toAscii(s){if(typeof s!=='string')return s; const ar='٠١٢٣٤٥٦٧٨٩',fa='۰۱۲۳۴۵۶۷۸۹';return [...s].map(c=>{let i=ar.indexOf(c); if(i>-1)return i; i=fa.indexOf(c); if(i>-1)return i; return c}).join('')}
+function num(v){if(v===''||v==null)return ''; const n=Number(toAscii(String(v)).replace(/[^0-9.]/g,'')); return Number.isFinite(n)?n:''}
+function startDate(){let s=localStorage.getItem(LS_START); if(!s){let d=new Date(); d.setHours(0,0,0,0); localStorage.setItem(LS_START,d.toISOString()); s=d.toISOString()} return new Date(s)}
+function setStart(d){d.setHours(0,0,0,0); localStorage.setItem(LS_START,d.toISOString())}
+function todayIdx(){let st=startDate().getTime(), d=new Date(); d.setHours(0,0,0,0); return Math.max(1,Math.min(84,Math.floor((d-st)/86400000)+1))}
+function weekOf(day){return Math.ceil(day/7)}
+function phaseOf(day){if(day<=7)return 'التثبيت'; if(day<=14)return 'نقل جرعات نايت كالم'; return 'التخفيض التدريجي'}
+function targetFor(day, drug){
+  if(day<=7){ if(drug.key==='night_day_tabs')return 'تسجيل فقط'; return drug.baseline; }
+  if(day<=14){
+    if(drug.key==='night_total_tabs')return 'نفس إجمالي الأسبوع الأول غالبًا، بلا تخفيض كبير';
+    if(drug.key==='night_day_tabs')return 'نقل تدريجي ناحية المساء/الليل بموافقة الطبيب';
+    return 'تثبيت بلا زيادة';
   }
-  return new Date(s);
+  if(drug.key==='night_total_tabs')return 'تخفيض 10 أسابيع حسب موافقة الطبيب';
+  if(drug.key==='night_day_tabs')return 'المفترض أقل ما يمكن؛ يسجل السبب عند أي جرعة نهارية';
+  return 'حسب قرار الطبيب؛ لا تغيير مفاجئ';
 }
-
-function getCurrentDay() {
-  const diff = Date.now() - getStartDate().getTime();
-  const day = Math.floor(diff / 86400000) + 1;
-  return Math.min(TOTAL_DAYS, Math.max(1, day));
+function load(){return JSON.parse(localStorage.getItem(LS_DATA)||'{}')}
+function save(o){localStorage.setItem(LS_DATA,JSON.stringify(o))}
+function getDay(day){return load()[day]||{doses:{},kpi:{},protocol:{},reason:'',doctorNotes:''}}
+function setDay(day,data){let all=load(); all[day]=data; save(all)}
+function getInv(){return JSON.parse(localStorage.getItem(LS_INV)||'{}')}
+function renderInv(){const inv=getInv(); document.getElementById('invRows').innerHTML=INV.map(x=>`<tr><td>${x.label}</td><td><input data-i="${x.key}" data-f="mg" type="number" value="${inv[x.key]?.mg??x.mg}"></td><td><input data-i="${x.key}" data-f="tabs" type="number" step="0.5" value="${inv[x.key]?.tabs??0}"></td></tr>`).join('')}
+let current=todayIdx();
+function render(day=current){current=day; const data=getDay(day), wk=weekOf(day), progress=Math.round(day/84*100);
+  document.getElementById('startLabel').textContent=startDate().toLocaleDateString('ar-EG');
+  document.getElementById('dayLabel').textContent=day+(day!==todayIdx()?' (عرض)':'');
+  document.getElementById('weekLabel').textContent=wk; document.getElementById('phaseLabel').textContent=phaseOf(day);
+  document.getElementById('progressText').textContent=progress+'%'; document.getElementById('progressBar').style.width=progress+'%';
+  document.getElementById('phase1').classList.toggle('activePhase', day<=7); document.getElementById('phase2').classList.toggle('activePhase', day>7&&day<=14); document.getElementById('phase3').classList.toggle('activePhase', day>14);
+  let text = day<=7 ? 'اليوم ضمن أسبوع التثبيت: لا زيادة ولا تخفيض. الهدف تسجيل الحقيقة.' : day<=14 ? 'اليوم ضمن أسبوع نقل نايت كالم: لا تخفيض كبير، نراقب الجرعة النهارية وسببها.' : 'اليوم ضمن مرحلة التخفيض: لا تنفذ أي تخفيض إلا إذا كان الطبيب وافق وحدد الخطوة.';
+  document.getElementById('targetText').textContent=text;
+  document.getElementById('doseRows').innerHTML=DRUGS.map(d=>{let v=data.doses[d.key]??''; return `<tr><td>${d.label}</td><td class="muted">${targetFor(day,d)}</td><td><input class="doseInp" data-k="${d.key}" inputmode="decimal" value="${v}" placeholder="${d.unit}"></td><td id="warn_${d.key}" class="small"></td></tr>`}).join('');
+  document.querySelectorAll('.doseInp').forEach(inp=>inp.oninput=()=>validateDose(inp));
+  ['sleep','defeat','anxiety','anger','craving','energy'].forEach(k=>document.getElementById(k).value=data.kpi[k]??'');
+  ['p_wait','p_change','p_write'].forEach(k=>document.getElementById(k).checked=!!data.protocol[k]);
+  document.getElementById('reason').value=data.reason||''; document.getElementById('doctorNotes').value=data.doctorNotes||'';
+  renderInv(); document.querySelectorAll('.doseInp').forEach(validateDose);
 }
-
-function loadDayData(d) {
-  const a = JSON.parse(localStorage.getItem(LS_DATA) || "{}");
-  return a[d] || {med:{}, mood:3, notes:""};
+function validateDose(inp){const k=inp.dataset.k, v=num(inp.value), w=document.getElementById('warn_'+k); w.textContent=''; w.className='small';
+  if(v==='')return;
+  if(k==='gabapentin_tabs' && v>3){w.textContent='زيادة عن خط التثبيت: سجّل السبب ولا تجعلها تلقائية'; w.className='small bad'}
+  if(k==='night_total_tabs' && v>5){w.textContent='زيادة عن الرقم الأقل المقترح للتثبيت'; w.className='small bad'}
+  if(k==='night_day_tabs' && v>0 && current>7){w.textContent='جرعة نهارية: اربطها بسبب واضح وبروتوكول الإحباط'; w.className='small warn'}
 }
-
-function saveDayData(d, o) {
-  const a = JSON.parse(localStorage.getItem(LS_DATA) || "{}");
-  a[d] = o;
-  localStorage.setItem(LS_DATA, JSON.stringify(a));
-}
-
-function renderChart() {
-  if (chart) chart.destroy();
-  chart = new Chart(document.getElementById('chart'), {
-    type: 'line',
-    data: {
-      labels: Array.from({length:TOTAL_DAYS},(_,i)=>i+1),
-      datasets: [
-        {label:'إيزوبيكلون', data:targets.eso.slice(1), borderColor:'#e74c3c', tension:0.4},
-        {label:'جابابنتين ÷100', data:targets.gab.slice(1).map(x=>x/100), borderColor:'#f39c12', tension:0.4},
-        {label:'أرمودافينيل', data:targets.arm.slice(1), borderColor:'#3498db', tension:0.4}
-      ]
-    },
-    options: {plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}}, maintainAspectRatio:false}
-  });
-}
-
-function renderInventory() {
-  let inv = JSON.parse(localStorage.getItem(LS_INV) || "{}");
-  if (Object.keys(inv).length === 0) {
-    inv = {eso:{boxes:6,loose:0}, gab:{boxes:4,loose:0}, arm:{boxes:3,loose:0}};
-    localStorage.setItem(LS_INV, JSON.stringify(inv));
-  }
-  const tbody = document.querySelector("#invTable tbody");
-  tbody.innerHTML = "";
-  Object.keys(drugInfo).forEach(k => {
-    const i = drugInfo[k];
-    const cur = inv[k];
-    const totalTabs = cur.boxes * i.tabsPerBox + cur.loose;
-    const totalMg = totalTabs * i.mg;
-    let needed = 0;
-    for (let d = currentDay; d <= TOTAL_DAYS; d++) needed += targets[k][d];
-    const daysLeft = needed === 0 ? "∞" : Math.floor(totalMg / needed * (TOTAL_DAYS-currentDay+1));
-    const tr = document.createElement("tr");
-    tr.innerHTML = `<td><b>${i.name}</b></td><td>${totalTabs} قرص</td><td>${totalMg.toLocaleString()} مجم</td><td><b>${daysLeft}</b> يوم</td><td style="font-size:26px">${daysLeft<10 && daysLeft!=="∞" ? "⚠️" : "✅"}</td>`;
-    tbody.appendChild(tr);
-  });
-}
-
-function render() {
-  currentDay = getCurrentDay();
-
-  document.getElementById("dayIdxLabel").textContent = currentDay;
-  document.getElementById("weekLabel").textContent = Math.ceil(currentDay/7);
-  document.getElementById("progressText").textContent = Math.round((currentDay-1)/(TOTAL_DAYS-1)*100) + "%";
-  document.getElementById("progressBar").style.width = (currentDay-1)/(TOTAL_DAYS-1)*100 + "%";
-  document.getElementById("startDateLabel").textContent = getStartDate().toLocaleDateString('ar-EG');
-
-  document.getElementById("t_eso").textContent = targets.eso[currentDay];
-  document.getElementById("t_gab").textContent = targets.gab[currentDay];
-  document.getElementById("t_arm").textContent = targets.arm[currentDay];
-  document.getElementById("t_caf").textContent = targets.caf[currentDay];
-
-  document.getElementById("targetsText").innerHTML = `إيزوبيكلون <b>${targets.eso[currentDay]}</b> مجم • جابابنتين <b>${targets.gab[currentDay]}</b> • أرمودافينيل <b>${targets.arm[currentDay]}</b> • كافيين ≤ <b>${targets.caf[currentDay]}</b>`;
-
-  document.getElementById("dailyTip").innerHTML = "💡 <b>نصيحة اليوم:</b><br>" + tips[(currentDay-1) % tips.length];
-
-  const data = loadDayData(currentDay);
-  ["eso","gab","arm","caf"].forEach(k => {
-    document.querySelector(`input[data-k="${k}"]`).value = data.med[k] || "";
-  });
-  document.getElementById("notes").value = data.notes || "";
-  setMood(data.mood || 3);
-
-  renderChart();
-  renderInventory();
-}
-
-function setMood(m) {
-  currentMood = m;
-  document.querySelectorAll('.mood').forEach((e,i) => e.classList.toggle('active', i===m-1));
-}
-
-document.getElementById("saveDay").onclick = () => {
-  const data = {med:{}, mood:currentMood, notes:document.getElementById("notes").value};
-  ["eso","gab","arm","caf"].forEach(k => {
-    let v = document.querySelector(`input[data-k="${k}"]`).value;
-    data.med[k] = v==="" ? null : Number(v);
-  });
-  saveDayData(currentDay, data);
-  alert("تم الحفظ بنجاح ✅");
-};
-
-document.getElementById("prevDay").onclick = () => { currentDay = Math.max(1, currentDay-1); render(); };
-document.getElementById("nextDay").onclick = () => { currentDay = Math.min(TOTAL_DAYS, currentDay+1); render(); };
-
-document.getElementById("resetStart").onclick = () => {
-  const s = prompt("تاريخ البداية (YYYY-MM-DD)", getStartDate().toISOString().slice(0,10));
-  if (s) {
-    localStorage.setItem(LS_START, new Date(s+"T00:00").toISOString());
-    render();
-  }
-};
-
-document.getElementById("openInv").onclick = () => {
-  const inv = JSON.parse(localStorage.getItem(LS_INV) || "{}");
-  let html = "";
-  Object.keys(drugInfo).forEach(k => {
-    const i = drugInfo[k];
-    const cur = inv[k] || {boxes:0, loose:0};
-    html += `<div style="margin:20px 0;padding:20px;background:#f8f9fa;border-radius:12px">
-      <h4>${i.name} (${i.mg} مجم – ${i.tabsPerBox} قرص/علبة)</h4>
-      عدد العلب: <input type="number" value="${cur.boxes}" data-k="${k}" data-f="boxes"><br><br>
-      أقراص مفردة: <input type="number" value="${cur.loose}" data-k="${k}" data-f="loose">
-    </div>`;
-  });
-  document.getElementById("invForm").innerHTML = html;
-  document.getElementById("invDlg").showModal();
-};
-
-document.getElementById("saveInv").onclick = () => {
-  const inv = {};
-  document.querySelectorAll("#invForm input").forEach(i => {
-    const k = i.dataset.k;
-    const f = i.dataset.f;
-    if (!inv[k]) inv[k] = {};
-    inv[k][f] = Number(i.value) || 0;
-  });
-  localStorage.setItem(LS_INV, JSON.stringify(inv));
-  document.getElementById("invDlg").close();
-  renderInventory();
-  alert("تم حفظ المخزون ✅");
-};
-
+document.getElementById('saveDay').onclick=()=>{const data=getDay(current); data.doses={}; document.querySelectorAll('.doseInp').forEach(i=>data.doses[i.dataset.k]=num(i.value)); data.kpi={}; ['sleep','defeat','anxiety','anger','craving','energy'].forEach(k=>data.kpi[k]=num(document.getElementById(k).value)); data.protocol={}; ['p_wait','p_change','p_write'].forEach(k=>data.protocol[k]=document.getElementById(k).checked); data.reason=document.getElementById('reason').value; data.doctorNotes=document.getElementById('doctorNotes').value; setDay(current,data); document.getElementById('saveMsg').textContent='تم الحفظ ✅'; setTimeout(()=>document.getElementById('saveMsg').textContent='',1500); render(current)};
+document.getElementById('saveInv').onclick=()=>{let inv=getInv(); document.querySelectorAll('#invRows input').forEach(i=>{const key=i.dataset.i, f=i.dataset.f; inv[key]=inv[key]||{}; inv[key][f]=num(i.value)||0}); localStorage.setItem(LS_INV,JSON.stringify(inv)); alert('تم حفظ المخزون')};
+document.getElementById('prevDay').onclick=()=>render(Math.max(1,current-1)); document.getElementById('nextDay').onclick=()=>render(Math.min(84,current+1)); document.getElementById('todayBtn').onclick=()=>render(todayIdx());
+document.getElementById('darkMode').onclick=()=>{document.body.classList.toggle('night'); localStorage.setItem(LS_DARK,document.body.classList.contains('night')?'1':'0')}; if(localStorage.getItem(LS_DARK)==='1')document.body.classList.add('night');
+document.getElementById('setStart').onclick=()=>{let s=prompt('تاريخ البدء بصيغة YYYY-MM-DD أو اتركه فارغًا لليوم',''); if(s===null)return; let d=s.trim()?new Date(s+'T00:00:00'):new Date(); if(isNaN(d))return alert('تاريخ غير صالح'); setStart(d); render(todayIdx())};
+document.getElementById('wipe').onclick=()=>{if(confirm('مسح بيانات التسجيل والمخزون؟')){localStorage.removeItem(LS_DATA); localStorage.removeItem(LS_INV); render(todayIdx())}};
+document.getElementById('printPdf').onclick=()=>window.print();
+document.getElementById('exportCsv').onclick=()=>{let all=load(), lines=['day,date,week,phase,armodacure,night_total_tabs,night_day_tabs,gabapentin_tabs,sleep,defeat,anxiety,anger,craving,energy,protocol_wait,protocol_change,protocol_write,reason,doctor_notes']; for(let d=1;d<=84;d++){let date=new Date(startDate().getTime()+(d-1)*86400000).toISOString().slice(0,10), x=all[d]||{}, a=x.doses||{}, k=x.kpi||{}, p=x.protocol||{}; lines.push([d,date,weekOf(d),phaseOf(d),a.armodacure??'',a.night_total_tabs??'',a.night_day_tabs??'',a.gabapentin_tabs??'',k.sleep??'',k.defeat??'',k.anxiety??'',k.anger??'',k.craving??'',k.energy??'',p.p_wait?1:0,p.p_change?1:0,p.p_write?1:0,'"'+(x.reason||'').replace(/"/g,'""')+'"','"'+(x.doctorNotes||'').replace(/"/g,'""')+'"'].join(','))} let blob=new Blob([lines.join('\n')],{type:'text/csv;charset=utf-8'}), a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='recovery_12_weeks_report.csv'; a.click(); URL.revokeObjectURL(a.href)};
+setInterval(()=>{const data=getDay(current); data.reason=document.getElementById('reason').value; data.doctorNotes=document.getElementById('doctorNotes').value;},30000);
 render();
-setInterval(() => { if (getCurrentDay() !== currentDay) render(); }, 60000);
 </script>
 </body>
 </html>
