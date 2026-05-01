@@ -5,20 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>تعافي 12 أسبوع — تثبيت ثم نقل ثم تخفيض</title>
 <style>
-  :root{
-    --bg:#f5f7fa; --card:#fff; --text:#0f172a; --muted:#64748b; --border:#e2e8f0;
-    --header:#ffffffee; --input:#f8fafc; --btn:#fff; --accent:#16a34a; --accent-bg:#dcfce7;
-    --warn:#92400e; --warn-bg:#fef3c7; --danger:#e11d48; --danger-bg:#ffe4e6; --blue:#2563eb;
-  }
+  :root{--bg:#f5f7fa;--card:#fff;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--header:#ffffffee;--input:#f8fafc;--btn:#fff;--accent:#16a34a;--accent-bg:#dcfce7;--warn:#92400e;--warn-bg:#fef3c7;--danger:#e11d48;--danger-bg:#ffe4e6;--blue:#2563eb}
   body.night{--bg:#0b1220;--card:#10192e;--text:#e9eef7;--muted:#99a3b3;--border:#1f2a44;--header:#0b1220ee;--input:#0c1426;--btn:#0c1426;--accent:#4ade80;--accent-bg:#12311e;--warn:#fff3cd;--warn-bg:#32240d;--danger:#fb7185;--danger-bg:#3a1521;--blue:#60a5fa}
   *{box-sizing:border-box} body{margin:0;font-family:system-ui,"Segoe UI",Tahoma,Arial;color:var(--text);background:var(--bg)}
   header{position:sticky;top:0;z-index:10;background:var(--header);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:14px}
   h1{font-size:18px;margin:0} h3{margin:0 0 10px}.wrap{max-width:1120px;margin:auto;padding:14px}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}.card{grid-column:span 12;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:14px}.half{grid-column:span 12}@media(min-width:900px){.half{grid-column:span 6}.third{grid-column:span 4}.two{grid-column:span 2}}
   .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.btn{border:1px solid var(--border);background:var(--btn);color:var(--text);padding:9px 12px;border-radius:10px;cursor:pointer}.btn.accent{background:var(--accent-bg);color:var(--accent);border-color:var(--accent)}.btn.warn{background:var(--warn-bg);color:var(--warn)}.btn.danger{background:var(--danger-bg);color:var(--danger)}
-  .pill{display:inline-flex;gap:6px;align-items:center;background:var(--input);border:1px solid var(--border);border-radius:999px;padding:6px 10px;font-size:12px}.muted{color:var(--muted)}.ok{color:var(--accent)}.bad{color:var(--danger)}.blue{color:var(--blue)}
+  .pill{display:inline-flex;gap:6px;align-items:center;background:var(--input);border:1px solid var(--border);border-radius:999px;padding:6px 10px;font-size:12px}.muted{color:var(--muted)}.ok{color:var(--accent)}.bad{color:var(--danger)}.warnText{color:var(--warn)}.blue{color:var(--blue)}
   label{display:block;font-size:12px;color:var(--muted);margin:8px 0 6px} input,textarea,select{width:100%;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--input);color:var(--text)} textarea{min-height:90px}.table{width:100%;border-collapse:collapse;font-size:13px}.table th,.table td{border-bottom:1px solid var(--border);padding:8px;text-align:center}.table td:first-child,.table th:first-child{text-align:right}.phaseBox{border:1px solid var(--border);border-radius:14px;padding:12px;background:var(--input)}.activePhase{outline:2px solid var(--accent);background:var(--accent-bg)}
   .bar{height:10px;background:var(--input);border:1px solid var(--border);border-radius:999px;overflow:hidden}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--accent));width:0%}.small{font-size:12px}.checkline{display:flex;gap:8px;align-items:center;margin:6px 0}.checkline input{width:auto}
-  @media print{header .row button,.noPrint{display:none!important}.card{break-inside:avoid}.wrap{padding:0}body{background:white}.card{border-color:#ddd}}
+  dialog{border:none;border-radius:16px;background:var(--card);color:var(--text);max-width:900px;width:92%;padding:18px} dialog::backdrop{background:#0008}
+  @media print{header .row button,.noPrint,dialog{display:none!important}.card{break-inside:avoid}.wrap{padding:0}body{background:white}.card{border-color:#ddd}}
 </style>
 </head>
 <body>
@@ -26,6 +23,7 @@
   <div class="row" style="justify-content:space-between">
     <h1>تعافي 12 أسبوع — تثبيت ثم نقل ثم تخفيض</h1>
     <div class="row noPrint">
+      <button class="btn" id="openInv">ضبط المخزون</button>
       <button class="btn" id="prevDay">السابق</button><button class="btn" id="nextDay">التالي</button>
       <button class="btn" id="todayBtn">اليوم</button><button class="btn" id="setStart">يوم البدء</button>
       <button class="btn" id="darkMode">الوضع الليلي</button><button class="btn" id="exportCsv">CSV</button>
@@ -64,7 +62,8 @@
         <thead><tr><th>البند</th><th>الهدف/الملاحظة</th><th>ما حدث اليوم</th><th>تنبيه</th></tr></thead>
         <tbody id="doseRows"></tbody>
       </table>
-      <div class="row" style="margin-top:10px"><button class="btn accent" id="saveDay">حفظ اليوم</button><span class="muted" id="saveMsg"></span></div>
+      <div class="row" style="margin-top:10px"><button class="btn accent" id="saveDay">حفظ اليوم وخصم المخزون</button><span class="muted" id="saveMsg"></span></div>
+      <p class="small muted">الخصم التلقائي يتم من: أرمودكيور، نايت كالم إجمالي، جابتين. بند "نايت كالم نهاري" للتتبع فقط ولا يخصم مرة ثانية.</p>
     </div>
 
     <div class="card half">
@@ -94,22 +93,41 @@
     </div>
 
     <div class="card half">
-      <h3>مخزون مبسط</h3>
-      <table class="table"><thead><tr><th>دواء</th><th>mg/قرص</th><th>المتبقي أقراص</th></tr></thead><tbody id="invRows"></tbody></table>
-      <div class="row noPrint" style="margin-top:10px"><button class="btn" id="saveInv">حفظ المخزون</button></div>
+      <div class="row" style="justify-content:space-between">
+        <h3>المخزون — يحسب نفسه تلقائيًا</h3>
+        <button class="btn noPrint" id="openInv2">ضبط المخزون</button>
+      </div>
+      <table class="table"><thead><tr><th>دواء</th><th>المتبقي</th><th>يكفي تقريبًا</th><th>تنبيه</th></tr></thead><tbody id="invSummaryRows"></tbody></table>
+      <p class="small muted">اضبط عدد العلب والأقراص المفردة من زر ضبط المخزون. عند حفظ اليوم يخصم التطبيق الجرعات من المتبقي.</p>
     </div>
   </div>
 </div>
 
+<dialog id="invDlg">
+  <form method="dialog">
+    <h3>ضبط المخزون</h3>
+    <div id="invForm"></div>
+    <div class="row" style="margin-top:12px;justify-content:flex-end">
+      <button class="btn" value="cancel">إلغاء</button>
+      <button class="btn accent" id="saveInv" value="ok">حفظ المخزون</button>
+    </div>
+  </form>
+</dialog>
+
 <script>
-const LS_START='recovery12_start_v2', LS_DATA='recovery12_data_v2', LS_INV='recovery12_inv_v2', LS_DARK='recovery12_dark_v2';
+const LS_START='recovery12_start_v3', LS_DATA='recovery12_data_v3', LS_INV='recovery12_inv_v3', LS_DARK='recovery12_dark_v3';
 const DRUGS=[
   {key:'armodacure', label:'أرمودكيور', unit:'mg', baseline:'300 مجم: 150 صباحًا + 150 الساعة 2 مساءً'},
-  {key:'night_total_tabs', label:'نايت كالم إجمالي', unit:'قرص', baseline:'ثبيت الرقم اليومي: غالبًا 5 أقراص، ولا زيادة تلقائية'},
+  {key:'night_total_tabs', label:'نايت كالم إجمالي', unit:'قرص', baseline:'تثبيت الرقم اليومي: غالبًا 5 أقراص، ولا زيادة تلقائية'},
   {key:'night_day_tabs', label:'نايت كالم نهاري', unit:'قرص', baseline:'يسجل فقط. الهدف في أسبوع النقل: تقليل وظيفة قرص الإحباط النهاري'},
   {key:'gabapentin_tabs', label:'جابتين 800', unit:'قرص', baseline:'تثبيت 3 أقراص إن أمكن وعدم الصعود إلى 4 بلا طبيب'}
 ];
-const INV=[{key:'armodacure',label:'أرمودكيور',mg:150},{key:'nightcalm',label:'نايت كالم',mg:3},{key:'gabapentin',label:'جابتين',mg:800}];
+const INV=[
+  {key:'armodacure',label:'أرمودكيور',mgPerTab:150,tabsPerBox:30,boxes:0,looseTabs:0,alertTabs:6,defaultDailyTabs:2},
+  {key:'nightcalm',label:'نايت كالم',mgPerTab:3,tabsPerBox:30,boxes:0,looseTabs:0,alertTabs:10,defaultDailyTabs:5},
+  {key:'gabapentin',label:'جابتين',mgPerTab:800,tabsPerBox:30,boxes:0,looseTabs:0,alertTabs:6,defaultDailyTabs:3}
+];
+const INV_MAP={armodacure:'armodacure', night_total_tabs:'nightcalm', gabapentin_tabs:'gabapentin'};
 function toAscii(s){if(typeof s!=='string')return s; const ar='٠١٢٣٤٥٦٧٨٩',fa='۰۱۲۳۴۵۶۷۸۹';return [...s].map(c=>{let i=ar.indexOf(c); if(i>-1)return i; i=fa.indexOf(c); if(i>-1)return i; return c}).join('')}
 function num(v){if(v===''||v==null)return ''; const n=Number(toAscii(String(v)).replace(/[^0-9.]/g,'')); return Number.isFinite(n)?n:''}
 function startDate(){let s=localStorage.getItem(LS_START); if(!s){let d=new Date(); d.setHours(0,0,0,0); localStorage.setItem(LS_START,d.toISOString()); s=d.toISOString()} return new Date(s)}
@@ -132,8 +150,23 @@ function load(){return JSON.parse(localStorage.getItem(LS_DATA)||'{}')}
 function save(o){localStorage.setItem(LS_DATA,JSON.stringify(o))}
 function getDay(day){return load()[day]||{doses:{},kpi:{},protocol:{},reason:'',doctorNotes:''}}
 function setDay(day,data){let all=load(); all[day]=data; save(all)}
-function getInv(){return JSON.parse(localStorage.getItem(LS_INV)||'{}')}
-function renderInv(){const inv=getInv(); document.getElementById('invRows').innerHTML=INV.map(x=>`<tr><td>${x.label}</td><td><input data-i="${x.key}" data-f="mg" type="number" value="${inv[x.key]?.mg??x.mg}"></td><td><input data-i="${x.key}" data-f="tabs" type="number" step="0.5" value="${inv[x.key]?.tabs??0}"></td></tr>`).join('')}
+function defaultInv(){let out={}; INV.forEach(x=>out[x.key]={mgPerTab:x.mgPerTab,tabsPerBox:x.tabsPerBox,boxes:x.boxes,looseTabs:x.looseTabs,alertTabs:x.alertTabs,defaultDailyTabs:x.defaultDailyTabs}); return out}
+function getInv(){const raw=JSON.parse(localStorage.getItem(LS_INV)||'{}'); const def=defaultInv(); return {...def, ...raw}}
+function saveInvObj(o){localStorage.setItem(LS_INV,JSON.stringify(o))}
+function totalTabs(inv,key){const x=inv[key]||{}; return Math.round((((x.boxes||0)*(x.tabsPerBox||0))+(x.looseTabs||0))*1000)/1000}
+function setTotalTabs(inv,key,total){const x=inv[key]; const per=x.tabsPerBox||1; total=Math.max(0,Math.round(total*1000)/1000); x.boxes=Math.floor(total/per); x.looseTabs=Math.round((total-(x.boxes*per))*1000)/1000}
+function doseToTabs(doses,doseKey,inv){const map=INV_MAP[doseKey]; if(!map)return 0; const v=num(doses[doseKey]); if(v===''||v<=0)return 0; if(doseKey==='armodacure') return v / (inv.armodacure.mgPerTab||150); return v}
+function dailyNeedTabs(key){const data=getDay(current); const inv=getInv(); if(key==='armodacure'){const v=num(data.doses.armodacure); return v? v/(inv.armodacure.mgPerTab||150) : inv[key].defaultDailyTabs}
+ if(key==='nightcalm'){const v=num(data.doses.night_total_tabs); return v||inv[key].defaultDailyTabs}
+ if(key==='gabapentin'){const v=num(data.doses.gabapentin_tabs); return v||inv[key].defaultDailyTabs}
+ return inv[key].defaultDailyTabs||1}
+function renderInventorySummary(){const inv=getInv(); const body=document.getElementById('invSummaryRows'); body.innerHTML=''; INV.forEach(x=>{const left=totalTabs(inv,x.key), need=dailyNeedTabs(x.key), days=need>0?Math.floor(left/need):'∞'; const low=left <= (inv[x.key].alertTabs||0); const tr=document.createElement('tr'); tr.innerHTML=`<td>${x.label}</td><td>${left} قرص</td><td>${days==='∞'?'∞':days+' يوم'}</td><td class="${low?'bad':'muted'}">${low?'قريب من النفاد':''}</td>`; body.appendChild(tr)});}
+function renderInvDialog(){const inv=getInv(); const form=document.getElementById('invForm'); form.innerHTML=''; INV.forEach(x=>{const i=inv[x.key]; const div=document.createElement('div'); div.className='grid'; div.style.gridTemplateColumns='repeat(5,1fr)'; div.style.gap='8px'; div.style.marginBottom='12px'; div.innerHTML=`<div style="grid-column:span 5"><b>${x.label}</b></div>
+  <div><label>mg/قرص</label><input data-k="${x.key}" data-f="mgPerTab" type="number" min="1" value="${i.mgPerTab||x.mgPerTab}"></div>
+  <div><label>أقراص/علبة</label><input data-k="${x.key}" data-f="tabsPerBox" type="number" min="1" value="${i.tabsPerBox||x.tabsPerBox}"></div>
+  <div><label>عدد العلب</label><input data-k="${x.key}" data-f="boxes" type="number" min="0" value="${i.boxes||0}"></div>
+  <div><label>أقراص مفردة</label><input data-k="${x.key}" data-f="looseTabs" type="number" min="0" step="0.5" value="${i.looseTabs||0}"></div>
+  <div><label>حد تنبيه</label><input data-k="${x.key}" data-f="alertTabs" type="number" min="0" value="${i.alertTabs||0}"></div>`; form.appendChild(div); });}
 let current=todayIdx();
 function render(day=current){current=day; const data=getDay(day), wk=weekOf(day), progress=Math.round(day/84*100);
   document.getElementById('startLabel').textContent=startDate().toLocaleDateString('ar-EG');
@@ -144,27 +177,29 @@ function render(day=current){current=day; const data=getDay(day), wk=weekOf(day)
   let text = day<=7 ? 'اليوم ضمن أسبوع التثبيت: لا زيادة ولا تخفيض. الهدف تسجيل الحقيقة.' : day<=14 ? 'اليوم ضمن أسبوع نقل نايت كالم: لا تخفيض كبير، نراقب الجرعة النهارية وسببها.' : 'اليوم ضمن مرحلة التخفيض: لا تنفذ أي تخفيض إلا إذا كان الطبيب وافق وحدد الخطوة.';
   document.getElementById('targetText').textContent=text;
   document.getElementById('doseRows').innerHTML=DRUGS.map(d=>{let v=data.doses[d.key]??''; return `<tr><td>${d.label}</td><td class="muted">${targetFor(day,d)}</td><td><input class="doseInp" data-k="${d.key}" inputmode="decimal" value="${v}" placeholder="${d.unit}"></td><td id="warn_${d.key}" class="small"></td></tr>`}).join('');
-  document.querySelectorAll('.doseInp').forEach(inp=>inp.oninput=()=>validateDose(inp));
+  document.querySelectorAll('.doseInp').forEach(inp=>inp.oninput=()=>{validateDose(inp); renderInventorySummary()});
   ['sleep','defeat','anxiety','anger','craving','energy'].forEach(k=>document.getElementById(k).value=data.kpi[k]??'');
   ['p_wait','p_change','p_write'].forEach(k=>document.getElementById(k).checked=!!data.protocol[k]);
   document.getElementById('reason').value=data.reason||''; document.getElementById('doctorNotes').value=data.doctorNotes||'';
-  renderInv(); document.querySelectorAll('.doseInp').forEach(validateDose);
+  document.querySelectorAll('.doseInp').forEach(validateDose); renderInventorySummary();
 }
 function validateDose(inp){const k=inp.dataset.k, v=num(inp.value), w=document.getElementById('warn_'+k); w.textContent=''; w.className='small';
   if(v==='')return;
   if(k==='gabapentin_tabs' && v>3){w.textContent='زيادة عن خط التثبيت: سجّل السبب ولا تجعلها تلقائية'; w.className='small bad'}
   if(k==='night_total_tabs' && v>5){w.textContent='زيادة عن الرقم الأقل المقترح للتثبيت'; w.className='small bad'}
-  if(k==='night_day_tabs' && v>0 && current>7){w.textContent='جرعة نهارية: اربطها بسبب واضح وبروتوكول الإحباط'; w.className='small warn'}
+  if(k==='night_day_tabs' && v>0 && current>7){w.textContent='جرعة نهارية: اربطها بسبب واضح وبروتوكول الإحباط'; w.className='small warnText'}
 }
-document.getElementById('saveDay').onclick=()=>{const data=getDay(current); data.doses={}; document.querySelectorAll('.doseInp').forEach(i=>data.doses[i.dataset.k]=num(i.value)); data.kpi={}; ['sleep','defeat','anxiety','anger','craving','energy'].forEach(k=>data.kpi[k]=num(document.getElementById(k).value)); data.protocol={}; ['p_wait','p_change','p_write'].forEach(k=>data.protocol[k]=document.getElementById(k).checked); data.reason=document.getElementById('reason').value; data.doctorNotes=document.getElementById('doctorNotes').value; setDay(current,data); document.getElementById('saveMsg').textContent='تم الحفظ ✅'; setTimeout(()=>document.getElementById('saveMsg').textContent='',1500); render(current)};
-document.getElementById('saveInv').onclick=()=>{let inv=getInv(); document.querySelectorAll('#invRows input').forEach(i=>{const key=i.dataset.i, f=i.dataset.f; inv[key]=inv[key]||{}; inv[key][f]=num(i.value)||0}); localStorage.setItem(LS_INV,JSON.stringify(inv)); alert('تم حفظ المخزون')};
+function collectDayForm(){const data=getDay(current); data.doses={}; document.querySelectorAll('.doseInp').forEach(i=>data.doses[i.dataset.k]=num(i.value)); data.kpi={}; ['sleep','defeat','anxiety','anger','craving','energy'].forEach(k=>data.kpi[k]=num(document.getElementById(k).value)); data.protocol={}; ['p_wait','p_change','p_write'].forEach(k=>data.protocol[k]=document.getElementById(k).checked); data.reason=document.getElementById('reason').value; data.doctorNotes=document.getElementById('doctorNotes').value; return data}
+document.getElementById('saveDay').onclick=()=>{const old=getDay(current); const data=collectDayForm(); const inv=getInv(); Object.keys(INV_MAP).forEach(doseKey=>{const invKey=INV_MAP[doseKey]; const oldTabs=doseToTabs(old.doses||{},doseKey,inv); const newTabs=doseToTabs(data.doses||{},doseKey,inv); const delta=newTabs-oldTabs; if(Math.abs(delta)>0.0001){setTotalTabs(inv,invKey,totalTabs(inv,invKey)-delta)}}); setDay(current,data); saveInvObj(inv); document.getElementById('saveMsg').textContent='تم الحفظ وخصم المخزون ✅'; setTimeout(()=>document.getElementById('saveMsg').textContent='',1500); render(current)};
+function openInvDialog(){renderInvDialog(); document.getElementById('invDlg').showModal()}
+document.getElementById('openInv').onclick=openInvDialog; document.getElementById('openInv2').onclick=openInvDialog;
+document.getElementById('saveInv').onclick=(e)=>{e.preventDefault(); let inv=getInv(); document.querySelectorAll('#invForm input').forEach(i=>{const key=i.dataset.k, f=i.dataset.f; inv[key]=inv[key]||{}; inv[key][f]=num(i.value)||0}); saveInvObj(inv); document.getElementById('invDlg').close(); renderInventorySummary();};
 document.getElementById('prevDay').onclick=()=>render(Math.max(1,current-1)); document.getElementById('nextDay').onclick=()=>render(Math.min(84,current+1)); document.getElementById('todayBtn').onclick=()=>render(todayIdx());
 document.getElementById('darkMode').onclick=()=>{document.body.classList.toggle('night'); localStorage.setItem(LS_DARK,document.body.classList.contains('night')?'1':'0')}; if(localStorage.getItem(LS_DARK)==='1')document.body.classList.add('night');
 document.getElementById('setStart').onclick=()=>{let s=prompt('تاريخ البدء بصيغة YYYY-MM-DD أو اتركه فارغًا لليوم',''); if(s===null)return; let d=s.trim()?new Date(s+'T00:00:00'):new Date(); if(isNaN(d))return alert('تاريخ غير صالح'); setStart(d); render(todayIdx())};
 document.getElementById('wipe').onclick=()=>{if(confirm('مسح بيانات التسجيل والمخزون؟')){localStorage.removeItem(LS_DATA); localStorage.removeItem(LS_INV); render(todayIdx())}};
 document.getElementById('printPdf').onclick=()=>window.print();
-document.getElementById('exportCsv').onclick=()=>{let all=load(), lines=['day,date,week,phase,armodacure,night_total_tabs,night_day_tabs,gabapentin_tabs,sleep,defeat,anxiety,anger,craving,energy,protocol_wait,protocol_change,protocol_write,reason,doctor_notes']; for(let d=1;d<=84;d++){let date=new Date(startDate().getTime()+(d-1)*86400000).toISOString().slice(0,10), x=all[d]||{}, a=x.doses||{}, k=x.kpi||{}, p=x.protocol||{}; lines.push([d,date,weekOf(d),phaseOf(d),a.armodacure??'',a.night_total_tabs??'',a.night_day_tabs??'',a.gabapentin_tabs??'',k.sleep??'',k.defeat??'',k.anxiety??'',k.anger??'',k.craving??'',k.energy??'',p.p_wait?1:0,p.p_change?1:0,p.p_write?1:0,'"'+(x.reason||'').replace(/"/g,'""')+'"','"'+(x.doctorNotes||'').replace(/"/g,'""')+'"'].join(','))} let blob=new Blob([lines.join('\n')],{type:'text/csv;charset=utf-8'}), a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='recovery_12_weeks_report.csv'; a.click(); URL.revokeObjectURL(a.href)};
-setInterval(()=>{const data=getDay(current); data.reason=document.getElementById('reason').value; data.doctorNotes=document.getElementById('doctorNotes').value;},30000);
+document.getElementById('exportCsv').onclick=()=>{let all=load(), inv=getInv(); let lines=['day,date,week,phase,armodacure,night_total_tabs,night_day_tabs,gabapentin_tabs,sleep,defeat,anxiety,anger,craving,energy,protocol_wait,protocol_change,protocol_write,reason,doctor_notes,stock_armodacure_tabs,stock_nightcalm_tabs,stock_gabapentin_tabs']; for(let d=1;d<=84;d++){let date=new Date(startDate().getTime()+(d-1)*86400000).toISOString().slice(0,10), x=all[d]||{}, a=x.doses||{}, k=x.kpi||{}, p=x.protocol||{}; lines.push([d,date,weekOf(d),phaseOf(d),a.armodacure??'',a.night_total_tabs??'',a.night_day_tabs??'',a.gabapentin_tabs??'',k.sleep??'',k.defeat??'',k.anxiety??'',k.anger??'',k.craving??'',k.energy??'',p.p_wait?1:0,p.p_change?1:0,p.p_write?1:0,'"'+(x.reason||'').replace(/"/g,'""')+'"','"'+(x.doctorNotes||'').replace(/"/g,'""')+'"',totalTabs(inv,'armodacure'),totalTabs(inv,'nightcalm'),totalTabs(inv,'gabapentin')].join(','))} let blob=new Blob([lines.join('\n')],{type:'text/csv;charset=utf-8'}), a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='recovery_12_weeks_report.csv'; a.click(); URL.revokeObjectURL(a.href)};
 render();
 </script>
 </body>
